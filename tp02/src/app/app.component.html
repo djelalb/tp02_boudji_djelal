@@ -2,6 +2,6 @@
 
 <app-form (formSubmit)="handleFormSubmit($event)"></app-form>
 
-<app-summary [clientData]="clientData"></app-summary>
+<app-summary *ngIf="clientData" [clientData]="clientData"></app-summary>
 
 <app-footer></app-footer>

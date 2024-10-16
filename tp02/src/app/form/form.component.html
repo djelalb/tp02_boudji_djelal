@@ -1,40 +1,72 @@
 <form [formGroup]="clientForm" (ngSubmit)="onSubmit()">
-    <label for="civilite">Civilité:</label>
-    <select formControlName="civilite">
-      <option value="M.">M.</option>
-      <option value="Mme">Mme</option>
-    </select>
-  
-    <label for="nom">Nom:</label>
-    <input type="text" formControlName="nom">
-  
-    <label for="prenom">Prénom:</label>
-    <input type="text" formControlName="prenom">
-  
-    <label for="adresse">Adresse:</label>
-    <input type="text" formControlName="adresse">
-  
-    <label for="cp">Code Postal:</label>
-    <input type="text" formControlName="cp">
-  
-    <label for="ville">Ville:</label>
-    <input type="text" formControlName="ville">
-  
-    <label for="tel">Téléphone:</label>
-    <input type="text" formControlName="tel">
-  
-    <label for="email">Email:</label>
-    <input type="email" formControlName="email">
-  
-    <label for="login">Login:</label>
-    <input type="text" formControlName="login">
-  
-    <label for="password">Mot de passe:</label>
-    <input type="password" formControlName="password">
-  
-    <label for="pays">Pays:</label>
-    <input type="text" formControlName="pays">
-  
-    <button type="submit" [disabled]="!clientForm.valid">Valider</button>
-  </form>
-  
+  <label for="civilite">Civilité:</label>
+  <select formControlName="civilite">
+    <option value="M.">M.</option>
+    <option value="Mme">Mme</option>
+  </select>
+  <div *ngIf="clientForm.controls['civilite'].invalid && clientForm.controls['civilite'].touched">
+    <small>Civilité est requise</small>
+  </div>
+
+  <label for="nom">Nom:</label>
+  <input type="text" formControlName="nom">
+  <div *ngIf="clientForm.controls['nom'].invalid && clientForm.controls['nom'].touched">
+    <small>Le nom est requis</small>
+  </div>
+
+  <label for="prenom">Prénom:</label>
+  <input type="text" formControlName="prenom">
+  <div *ngIf="clientForm.controls['prenom'].invalid && clientForm.controls['prenom'].touched">
+    <small>Le prénom est requis</small>
+  </div>
+
+  <label for="adresse">Adresse:</label>
+  <input type="text" formControlName="adresse">
+  <div *ngIf="clientForm.controls['adresse'].invalid && clientForm.controls['adresse'].touched">
+    <small>L'adresse est requise</small>
+  </div>
+
+  <label for="cp">Code Postal:</label>
+  <input type="text" formControlName="cp">
+  <div *ngIf="clientForm.controls['cp'].invalid && clientForm.controls['cp'].touched">
+    <small>Le code postal doit comporter 5 chiffres</small>
+  </div>
+
+  <label for="ville">Ville:</label>
+  <input type="text" formControlName="ville">
+  <div *ngIf="clientForm.controls['ville'].invalid && clientForm.controls['ville'].touched">
+    <small>La ville est requise</small>
+  </div>
+
+  <label for="tel">Téléphone:</label>
+  <input type="text" formControlName="tel">
+  <div *ngIf="clientForm.controls['tel'].invalid && clientForm.controls['tel'].touched">
+    <small>Le téléphone doit comporter 10 chiffres</small>
+  </div>
+
+  <label for="email">Email:</label>
+  <input type="email" formControlName="email">
+  <div *ngIf="clientForm.controls['email'].invalid && clientForm.controls['email'].touched">
+    <small>Entrez un email valide</small>
+  </div>
+
+  <label for="login">Login:</label>
+  <input type="text" formControlName="login">
+  <div *ngIf="clientForm.controls['login'].invalid && clientForm.controls['login'].touched">
+    <small>Le login est requis</small>
+  </div>
+
+  <label for="password">Mot de passe:</label>
+  <input type="password" formControlName="password">
+  <div *ngIf="clientForm.controls['password'].invalid && clientForm.controls['password'].touched">
+    <small>Le mot de passe doit comporter au moins 6 caractères</small>
+  </div>
+
+  <label for="pays">Pays:</label>
+  <input type="text" formControlName="pays">
+  <div *ngIf="clientForm.controls['pays'].invalid && clientForm.controls['pays'].touched">
+    <small>Le pays est requis</small>
+  </div>
+
+  <button type="submit" [disabled]="!clientForm.valid">Valider</button>
+</form>

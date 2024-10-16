@@ -1,0 +1,67 @@
+form {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #fffbea;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #4b2e39;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+select {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #d2b48c;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    background-color: #d2b48c;
+    color: #4b2e39;
+    border: 2px solid #4b2e39;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+button:hover {
+    background-color: #e5c7a3;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+button:active {
+    background-color: #c9a97b;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+
+input.ng-invalid.ng-touched {
+    border-color: #e74c3c;
+}
+
+input.ng-valid.ng-touched {
+    border-color: #2ecc71;
+}
+
+.error {
+    color: #e74c3c;
+    font-size: 0.9rem;
+    margin-top: -15px;
+    margin-bottom: 20px;
+}
+

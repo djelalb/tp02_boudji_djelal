@@ -1,0 +1,22 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f5f5dc;
+    margin: 0;
+    padding: 0;
+}
+
+h1, h2 {
+    color: #4b2e39;
+    text-align: center;
+}
+  
+footer {
+    background-color: #4b2e39;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+  
