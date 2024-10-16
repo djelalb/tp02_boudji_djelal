@@ -1,72 +1,72 @@
-<form [formGroup]="clientForm" (ngSubmit)="onSubmit()">
+<form (ngSubmit)="onSubmit()">
   <label for="civilite">Civilité:</label>
-  <select formControlName="civilite">
+  <select [(ngModel)]="client.civilite" name="civilite" required #civilite="ngModel">
     <option value="M.">M.</option>
     <option value="Mme">Mme</option>
   </select>
-  <div *ngIf="clientForm.controls['civilite'].invalid && clientForm.controls['civilite'].touched">
+  <div *ngIf="civilite.invalid && civilite.touched">
     <small>Civilité est requise</small>
   </div>
 
   <label for="nom">Nom:</label>
-  <input type="text" formControlName="nom">
-  <div *ngIf="clientForm.controls['nom'].invalid && clientForm.controls['nom'].touched">
+  <input type="text" [(ngModel)]="client.nom" name="nom" required #nom="ngModel">
+  <div *ngIf="nom.invalid && nom.touched">
     <small>Le nom est requis</small>
   </div>
 
   <label for="prenom">Prénom:</label>
-  <input type="text" formControlName="prenom">
-  <div *ngIf="clientForm.controls['prenom'].invalid && clientForm.controls['prenom'].touched">
+  <input type="text" [(ngModel)]="client.prenom" name="prenom" required #prenom="ngModel">
+  <div *ngIf="prenom.invalid && prenom.touched">
     <small>Le prénom est requis</small>
   </div>
 
   <label for="adresse">Adresse:</label>
-  <input type="text" formControlName="adresse">
-  <div *ngIf="clientForm.controls['adresse'].invalid && clientForm.controls['adresse'].touched">
+  <input type="text" [(ngModel)]="client.adresse" name="adresse" required #adresse="ngModel">
+  <div *ngIf="adresse.invalid && adresse.touched">
     <small>L'adresse est requise</small>
   </div>
 
   <label for="cp">Code Postal:</label>
-  <input type="text" formControlName="cp">
-  <div *ngIf="clientForm.controls['cp'].invalid && clientForm.controls['cp'].touched">
+  <input type="text" [(ngModel)]="client.cp" name="cp" required #cp="ngModel">
+  <div *ngIf="cp.invalid && cp.touched && !isValidPostalCode(client.cp)">
     <small>Le code postal doit comporter 5 chiffres</small>
   </div>
 
   <label for="ville">Ville:</label>
-  <input type="text" formControlName="ville">
-  <div *ngIf="clientForm.controls['ville'].invalid && clientForm.controls['ville'].touched">
+  <input type="text" [(ngModel)]="client.ville" name="ville" required #ville="ngModel">
+  <div *ngIf="ville.invalid && ville.touched">
     <small>La ville est requise</small>
   </div>
 
   <label for="tel">Téléphone:</label>
-  <input type="text" formControlName="tel">
-  <div *ngIf="clientForm.controls['tel'].invalid && clientForm.controls['tel'].touched">
+  <input type="text" [(ngModel)]="client.tel" name="tel" required #tel="ngModel">
+  <div *ngIf="tel.invalid && tel.touched && !isValidPhoneNumber(client.tel)">
     <small>Le téléphone doit comporter 10 chiffres</small>
   </div>
 
   <label for="email">Email:</label>
-  <input type="email" formControlName="email">
-  <div *ngIf="clientForm.controls['email'].invalid && clientForm.controls['email'].touched">
+  <input type="email" [(ngModel)]="client.email" name="email" required #email="ngModel">
+  <div *ngIf="email.invalid && email.touched">
     <small>Entrez un email valide</small>
   </div>
 
   <label for="login">Login:</label>
-  <input type="text" formControlName="login">
-  <div *ngIf="clientForm.controls['login'].invalid && clientForm.controls['login'].touched">
+  <input type="text" [(ngModel)]="client.login" name="login" required #login="ngModel">
+  <div *ngIf="login.invalid && login.touched">
     <small>Le login est requis</small>
   </div>
 
   <label for="password">Mot de passe:</label>
-  <input type="password" formControlName="password">
-  <div *ngIf="clientForm.controls['password'].invalid && clientForm.controls['password'].touched">
+  <input type="password" [(ngModel)]="client.password" name="password" required minlength="6" #password="ngModel">
+  <div *ngIf="password.invalid && password.touched && client.password.length < 6">
     <small>Le mot de passe doit comporter au moins 6 caractères</small>
   </div>
 
   <label for="pays">Pays:</label>
-  <input type="text" formControlName="pays">
-  <div *ngIf="clientForm.controls['pays'].invalid && clientForm.controls['pays'].touched">
+  <input type="text" [(ngModel)]="client.pays" name="pays" required #pays="ngModel">
+  <div *ngIf="pays.invalid && pays.touched">
     <small>Le pays est requis</small>
   </div>
 
-  <button type="submit" [disabled]="!clientForm.valid">Valider</button>
+  <button type="submit" [disabled]="!isValidForm()">Valider</button>
 </form>

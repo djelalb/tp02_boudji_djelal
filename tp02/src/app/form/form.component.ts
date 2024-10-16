@@ -1,39 +1,52 @@
 import { Component, Output, EventEmitter } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-form',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [FormsModule, CommonModule],
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.css']
 })
 export class FormComponent {
-  clientForm: FormGroup;
+  client: any = {
+    civilite: '',
+    nom: '',
+    prenom: '',
+    adresse: '',
+    cp: '',
+    ville: '',
+    tel: '',
+    email: '',
+    login: '',
+    password: '',
+    pays: ''
+  };
 
   @Output() formSubmit = new EventEmitter<any>();
 
-  constructor(private fb: FormBuilder) {
-    this.clientForm = this.fb.group({
-      civilite: ['', Validators.required],
-      nom: ['', Validators.required],
-      prenom: ['', Validators.required],
-      adresse: ['', Validators.required],
-      cp: ['', [Validators.required, Validators.pattern('^[0-9]{5}$')]],
-      ville: ['', Validators.required],
-      tel: ['', [Validators.required, Validators.pattern('^[0-9]{10}$')]],
-      email: ['', [Validators.required, Validators.email]],
-      login: ['', Validators.required],
-      password: ['', [Validators.required, Validators.minLength(6)]],
-      pays: ['', Validators.required]
-    });
+  isValidPostalCode(cp: string): boolean {
+    const postalCodePattern = /^[0-9]{5}$/;
+    return postalCodePattern.test(cp);
+  }
+
+  isValidPhoneNumber(tel: string): boolean {
+    const phonePattern = /^[0-9]{10}$/;
+    return phonePattern.test(tel);
   }
 
   onSubmit() {
-    if (this.clientForm.valid) {
-      this.formSubmit.emit(this.clientForm.value);
+    if (this.isValidForm()) {
+      this.formSubmit.emit(this.client);
     }
+  }
+
+  isValidForm(): boolean {
+    return this.client.civilite && this.client.nom && this.client.prenom &&
+           this.client.adresse && this.isValidPostalCode(this.client.cp) &&
+           this.client.ville && this.isValidPhoneNumber(this.client.tel) &&
+           this.client.email && this.client.login && this.client.password.length >= 6 &&
+           this.client.pays;
   }
 }
